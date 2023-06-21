@@ -15,26 +15,17 @@ public:
         if(root == NULL){
             return NULL;
         }
-        if(root-> val == p-> val){
-            return p;
+         if(p-> val <root-> val && q-> val < root-> val){
+            return  lowestCommonAncestor(root-> left,p , q);
+            
         }
-        if(root-> val == q-> val){
-            return q;
+        if(p-> val >root-> val && q-> val > root-> val){
+            return  lowestCommonAncestor(root-> right,p , q);
+            
         }
-        TreeNode* leftAns = lowestCommonAncestor(root-> left , p,q);
-        TreeNode* rightAns = lowestCommonAncestor(root-> right, p , q);
-        if(leftAns == NULL && rightAns == NULL){
-            return NULL;
-        }
-        else if(leftAns!= NULL && rightAns== NULL){
-            return leftAns;
-        }
-        else if(leftAns== NULL && rightAns!= NULL){
-            return rightAns;
-        }
-        else{
-            return root;
-        }
+        return root;
+       
+        
     }
     
 };
