@@ -1,30 +1,43 @@
 class Solution {
 public:
-        bool isvowel(char ch)
-    {
-        
-        if(ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u'|| ch=='A' || ch=='E' || ch=='I' || ch=='O' || ch=='U' ) return true;
-  
-       return false;
-    }
-    
     string reverseVowels(string s) {
-        int i=0;
-        int j=s.size()-1;
-        while(i<j)
-        {
-           bool lowvowel = isvowel(s[i]);
-           bool highvowel = isvowel(s[j]);
-            if(lowvowel && highvowel)
-            {
-                swap(s[i],s[j]);
-                i++;j--;
+        unordered_set <char> l;
+        l.insert('A');
+        l.insert('E');
+        l.insert('I');
+        l.insert('O');
+        l.insert('U');
+        l.insert('a');
+        l.insert('e');
+        l.insert('i');
+        l.insert('o');
+        l.insert('u');
+        int n = s.length();
+        int start = 0;
+        int end = n-1;
+        
+        while(start<end){
+            char x = s[start];
+            char y = s[end];
+            if(l.count(x) && l.count(y)){
+                swap(s[start], s[end]);
+                start++;
+                end--;
             }
-            else if(!lowvowel) i++;
-            else if(!highvowel) j--;
+            else if(l.count(x)){
+                end--;
+            }
+           else if(l.count(y)){
+               start++;
+           }
+            else{
+                start++;
+                end--;
+            }
+            
+            
         }
-         return s;
-    
+        return s;
       
     }
 };
