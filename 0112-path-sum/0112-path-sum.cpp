@@ -23,12 +23,12 @@ public:
             else 
                 return false;
         } 
-        bool ans = false;
-        
+        bool lans = false;
+        bool rans = false;
         if(root-> left != NULL || root-> right != NULL)
-             ans = hasPathSum(root -> left, targetSum - root-> val);
-            ans = ans || hasPathSum(root -> right, targetSum- root-> val);
+             lans = hasPathSum(root -> left, targetSum - root-> val);
+            rans =  hasPathSum(root -> right, targetSum- root-> val);
         
-        return ans;
+        return (lans || rans);
     }
 };
